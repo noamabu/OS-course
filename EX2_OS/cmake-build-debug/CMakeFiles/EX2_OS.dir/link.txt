@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/EX2_OS.dir/uthreads.cpp.o CMakeFiles/EX2_OS.dir/test0_sanity.cpp.o -o EX2_OS 

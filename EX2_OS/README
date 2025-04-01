@@ -1,0 +1,34 @@
+noam.aburbeh, yoavbarak
+Noam Aburbeh (208883538), Yoav Barak (206733065)
+EX: 2
+FILES:
+uthreads.cpp -- a file with the uthreads code
+Makefile
+
+ANSWERS:
+Q1:
+    a. The sigsetjmp function is used to save the current execution environment
+    (including the call stack, registers, and signal mask)
+    for later use by siglongjmp. It is typically used in non-local jumps,
+    which are mechanisms for handling errors or other exceptional conditions in a program.
+    The siglongjmp function is used to restore the environment previously saved by sigsetjmp,
+    effectively performing a non-local jump back to the point where sigsetjmp was called.
+    This can be used to return from deeply nested function calls, bypassing the normal call 
+    and return sequence.
+    b. Signal masks are used to block certain signals from being delivered to a process.
+    When using sigsetjmp and siglongjmp, the signal 
+    mask can be saved and restored, which affects which signals are blocked.
+Q2:
+One common use of user-level threads is to divide a large task into several smaller subtasks that can be executed concurrently. These 
+subtasks often use shared memory to communicate and share data.
+A good example of this is the Merge Sort algorithm. In a parallel implementation of Merge Sort, the input array is divided into smaller subarrays, and each thread is assigned to sort a subarray. After the threads complete their work, the sorted subarrays are merged together to form the final sorted array.
+Q3:
+Advantages: 1 - processes are protected from each other, so one process can't damgae the performances of other process.
+Disadvantages: 1 - High overhead because every switch context require significant work plus the regular kernel trap.
+2 - Require operating system to communicate.
+Q4:
+First, the keyboard receives the command input. Next, the shell forwards this input to the operating system for the targeted process. Then, the operating system sends a signal to the process, specifically using SIGTERM (signal number 15). Finally, the process handles this signal, triggering an interrupt managed by the OS to terminate the process.
+Q5:
+Real time refers to the actual elapsed time in the 'real world,' including every CPU run and the time taken for context switching between threads. Virtual time, on the other hand, only accounts for the time during which the process actively executes its code, excluding the time spent switching between threads.
+
+For example, consider a program with two threads that switch between each other several times. The virtual time would only include the periods when these threads are executing their code. In contrast, the real time would encompass the total duration of the process, including both the time spent switching between threads and the time the threads spend running their code

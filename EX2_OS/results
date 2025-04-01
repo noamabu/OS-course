@@ -1,0 +1,54 @@
+=================================================================
+==83060==ERROR: AddressSanitizer: heap-use-after-free on address 0x633000018950 at pc 0x7f56f7bbcfc7 bp 0x633000018920 sp 0x6330000180c8
+WRITE of size 24 at 0x633000018950 thread T0
+    #0 0x7f56f7bbcfc6 in __interceptor_sigaltstack ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors.inc:9986
+    #1 0x7f56f7c23493 in __asan::PlatformUnpoisonStacks() ../../../../src/libsanitizer/asan/asan_posix.cpp:44
+    #2 0x7f56f7c2902c in __asan_handle_no_return ../../../../src/libsanitizer/asan/asan_rtl.cpp:612
+    #3 0x55b64c07e8b4 in PassToNextThread(int, bool) /mnt/c/Users/USER/CLionProjects/EX2_OS/uthreads.cpp:185
+    #4 0x55b64c07f8cc in uthread_terminate(int) /mnt/c/Users/USER/CLionProjects/EX2_OS/uthreads.cpp:290
+    #5 0x55b64c09ae8a in f() /mnt/c/Users/USER/CLionProjects/EX2_OS/DoNotRunThis.cpp:8
+
+0x633000018950 is located 98640 bytes inside of 100000-byte region [0x633000000800,0x633000018ea0)
+freed by thread T0 here:
+    #0 0x7f56f7c1fe57 in operator delete[](void*) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:163
+
+previously allocated by thread T0 here:
+    #0 0x7f56f7c1f617 in operator new[](unsigned long, std::nothrow_t const&) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:108
+    #1 0x55b64c07f020 in uthread_spawn(void (*)()) /mnt/c/Users/USER/CLionProjects/EX2_OS/uthreads.cpp:248
+    #2 0x55b64c09aeb9 in main /mnt/c/Users/USER/CLionProjects/EX2_OS/DoNotRunThis.cpp:14
+    #3 0x7f56f7636d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+
+SUMMARY: AddressSanitizer: heap-use-after-free ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors.inc:9986 in __interceptor_sigaltstack
+Shadow bytes around the buggy address:
+  0x0c667fffb0d0: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c667fffb0e0: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c667fffb0f0: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c667fffb100: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c667fffb110: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+=>0x0c667fffb120: fd fd fd fd fd fd fd fd fd fd[fd]fd fd fd fd fd
+  0x0c667fffb130: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c667fffb140: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c667fffb150: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c667fffb160: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c667fffb170: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==83060==ABORTING

@@ -1,0 +1,3 @@
+/mnt/c/Users/USER/CLionProjects/EX2_OS/cmake-build-debug/CMakeFiles/EX2_OS.dir
+/mnt/c/Users/USER/CLionProjects/EX2_OS/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/c/Users/USER/CLionProjects/EX2_OS/cmake-build-debug/CMakeFiles/rebuild_cache.dir
